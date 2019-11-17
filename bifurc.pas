@@ -1,5 +1,8 @@
 PROGRAM Bifurcation;
 
+{ Ecrit avec Turbo Pascal 7 }
+{ Version du 17/11/2019 a 14h37 }
+
 USES
   Dos, Crt, Graph, BgiDriv;
 
@@ -69,6 +72,7 @@ CONST
   { Le parametre R varie de (Xmax-Xmin) sur une largeur d'ecran }
   Xmin=0;
   Xmax=0.5;
+  { Un cosinus varie de -1 a 1. On laisse un peu de place en haut et en bas }
   Ymin=-1.15;
   Ymax=1.02;
 VAR
