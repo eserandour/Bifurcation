@@ -1,7 +1,7 @@
 PROGRAM Bifurcation;
 
 { Ecrit avec Turbo Pascal 7 }
-{ Version du 17/11/2019 a 14h37 }
+{ Version du 17/11/2019 a 15h14 }
 
 USES
   Dos, Crt, Graph, BgiDriv;
@@ -67,14 +67,23 @@ END; { WaitLectClavier }
 
 {######################################################################}
 
+FUNCTION Suite(R: REAL; U:REAL): REAL;
+BEGIN
+  Suite:=Cos(R*U);
+END;
+
+{######################################################################}
+
 PROCEDURE BifurcationPlay;
 CONST
   { Le parametre R varie de (Xmax-Xmin) sur une largeur d'ecran }
-  Xmin=0;
-  Xmax=0.5;
+  Xmin = 0;
+  Xmax = 0.5;
   { Un cosinus varie de -1 a 1. On laisse un peu de place en haut et en bas }
-  Ymin=-1.15;
-  Ymax=1.02;
+  Ymin = -1.15;
+  Ymax = 1.02;
+  { Premier terme de la suite }
+  Y0 = 0;
 VAR
   R, Y                       : REAL;
   Xunit, Yunit, Xorig, Yorig : REAL;
@@ -94,14 +103,14 @@ BEGIN
   Yorig:=MaxY-((0-Ymin)*Yunit);
   NbEcran:=0;
   R:=Xmin;
-  Y:=0;
+  Y:=Y0;
   REPEAT
     InitClavier;
     NbTermes:=100; { Nombre de termes de la suite a calculer }
     NbPoints:=8; { Nombre de points a afficher }
     FOR i:=1 TO NbTermes DO
     BEGIN
-      Y:=Cos(R*Y);
+      Y:=Suite(R, Y);
       IF i>(NbTermes-NbPoints) THEN
       BEGIN
         Xscreen:=Round(Xorig+Xunit*R-NbEcran*MaxX);
@@ -114,12 +123,12 @@ BEGIN
     BEGIN
       Inc(NbEcran);
       Str(NbEcran, Chaine);
-      Chaine := Concat('Ecran ', Chaine);
+      Chaine:=Concat('Ecran ', Chaine);
       SetTextJustify(LeftText, CenterText);
       OutTextXY(15, MaxY-15, Chaine);
       Delay(2000);
       ClearDevice;
-      Y:=0;
+      Y:=Y0;
     END;
     R:=R+0.0001;
   UNTIL (KeyPressed);
