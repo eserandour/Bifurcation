@@ -72,7 +72,7 @@ CONST
   Ymin=-1.15;
   Ymax=1.02;
 VAR
-  R, Y                       : DOUBLE;
+  R, Y                       : REAL;
   Xunit, Yunit, Xorig, Yorig : REAL;
   Xscreen, Yscreen           : WORD;
   NbEcran                    : INTEGER;
