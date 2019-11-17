@@ -70,7 +70,7 @@ END; { WaitLectClavier }
 FUNCTION Suite(R: REAL; U:REAL): REAL;
 BEGIN
   Suite:=Cos(R*U);
-END;
+  END; { Suite }
 
 {######################################################################}
 
